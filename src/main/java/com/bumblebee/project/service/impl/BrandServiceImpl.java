@@ -56,4 +56,9 @@ public class BrandServiceImpl implements BrandService {
      return brandRepository.findAll();
     }
 
+    @Override
+    public Long getBrandCount() {
+        return brandRepository.count();
+    }
+
 }

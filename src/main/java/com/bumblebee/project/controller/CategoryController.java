@@ -49,4 +49,10 @@ public class CategoryController {
         List<Category> category = categoryService.getAllCategory();
         return new ResponseEntity(new StandardResponse("200", "Category retrieved successfully", category), HttpStatus.OK);
     }
+
+    @GetMapping("/count")
+    public ResponseEntity<Long> getCustomerCount() {
+        Number count = categoryService.getCategoryCount();
+        return new ResponseEntity(new StandardResponse("200", "Category Count", count), HttpStatus.OK);
+    }
 }

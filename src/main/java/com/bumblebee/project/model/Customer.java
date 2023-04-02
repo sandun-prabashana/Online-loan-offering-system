@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.Date;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -14,19 +15,45 @@ import java.time.LocalDate;
 @Table(name = "customer")
 public class Customer {
 
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long customerId;
 
-    private String fullName;
+    @Column(nullable = false)
+    private String firstName;
 
-    private LocalDate dateOfBirth;
+    @Column(nullable = false)
+    private String lastName;
 
+    @Column(nullable = false, unique = true)
     private String email;
 
+    @Column(nullable = false)
+    private String phoneNumber;
+
+    @Column(nullable = false)
     private String password;
 
-    private String phoneNumber;
+    @Column(nullable = false)
+    private String addressLine1;
+
+    @Column(nullable = false)
+    private String city;
+
+    @Column(nullable = false)
+    private String postalCode;
+
+    @Column(nullable = false, columnDefinition = "VARCHAR(20) DEFAULT 'ACTIVE'")
+    private String status;
+
+    private boolean isEnabled;
+
+    private String activationCode;
+
+    @Column(nullable = false)
+    private Date dateCreated;
+
 
 }
 

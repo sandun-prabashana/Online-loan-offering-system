@@ -10,8 +10,12 @@ import com.bumblebee.project.util.StandardResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @CrossOrigin("*")
@@ -22,8 +26,9 @@ public class BrandController {
     @Autowired
     private BrandService brandService;
 
+
     @PostMapping
-    public ResponseEntity<Brand> createBrand(@RequestBody BrandDTO brandDTO) {
+    public ResponseEntity<Brand> createBrand(@Valid @RequestBody BrandDTO brandDTO) {
         System.out.println("brandDTO 1 :"+brandDTO.getBrandName());
         Brand brand = brandService.createBrand(brandDTO);
         return new ResponseEntity(new StandardResponse("200", "Brand Create successfully", brandDTO), HttpStatus.CREATED);
@@ -51,5 +56,11 @@ public class BrandController {
     public ResponseEntity<List<Brand>> getAllBrand() {
         List<Brand> brand = brandService.getAllBrand();
         return new ResponseEntity(new StandardResponse("200", "Brand retrieved successfully", brand), HttpStatus.OK);
+    }
+
+    @GetMapping("/count")
+    public ResponseEntity<Long> getCustomerCount() {
+        Number count = brandService.getBrandCount();
+        return new ResponseEntity(new StandardResponse("200", "Brand Count", count), HttpStatus.OK);
     }
 }

@@ -1,5 +1,6 @@
 package com.bumblebee.project.model;
 
+import com.bumblebee.project.dto.CategoryDTO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -33,5 +34,6 @@ public class Product {
     private Brand brand;
 
     private int quantity;
+
 
 }
