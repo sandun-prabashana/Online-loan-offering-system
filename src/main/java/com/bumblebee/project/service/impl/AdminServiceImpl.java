@@ -36,15 +36,12 @@ public class AdminServiceImpl implements AdminService {
         return adminRepository.findById(id).orElseThrow(() -> new AdminNotFoundException("Admin not found with id: " + id));
     }
 
-    @Override
-    public Admin updateAdmin(Long id, AdminDTO adminDTO) {
-        Admin admin = getAdminById(id);
-        admin.setUsername(adminDTO.getUsername());
-        admin.setPassword(adminDTO.getPassword());
-        admin.setRole(adminDTO.getRole());
-        admin.setEmail(adminDTO.getEmail());
-        return adminRepository.save(admin);
-    }
+//    @Override
+//    public Admin updateAdmin(Long id, AdminDTO adminDTO) {
+//        Admin admin = getAdminById(id);
+//        admin.setEmail(adminDTO.getEmail());
+//        return adminRepository.save(admin);
+//    }
 
     @Override
     public void deleteAdmin(Long id) {

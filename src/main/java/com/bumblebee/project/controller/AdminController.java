@@ -3,7 +3,7 @@ package com.bumblebee.project.controller;
 import com.bumblebee.project.dto.AdminDTO;
 import com.bumblebee.project.model.Admin;
 import com.bumblebee.project.service.AdminService;
-import com.bumblebee.project.util.StandardResponse;
+import com.bumblebee.project.utility.Util2.StandardResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -31,11 +31,11 @@ public class AdminController {
         return new ResponseEntity(new StandardResponse("200", "Admin retrieved successfully", admin), HttpStatus.OK);
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<Admin> updateAdmin(@PathVariable Long id, @RequestBody AdminDTO adminDTO) {
-        Admin admin = adminService.updateAdmin(id, adminDTO);
-        return new ResponseEntity(new StandardResponse("200", "Admin updated successfully", admin), HttpStatus.OK);
-    }
+//    @PutMapping("/{id}")
+//    public ResponseEntity<Admin> updateAdmin(@PathVariable Long id, @RequestBody AdminDTO adminDTO) {
+//        Admin admin = adminService.updateAdmin(id, adminDTO);
+//        return new ResponseEntity(new StandardResponse("200", "Admin updated successfully", admin), HttpStatus.OK);
+//    }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteAdmin(@PathVariable Long id) {

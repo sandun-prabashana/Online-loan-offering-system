@@ -4,7 +4,7 @@ package com.bumblebee.project.controller;
 import com.bumblebee.project.dto.CategoryDTO;
 import com.bumblebee.project.model.Category;
 import com.bumblebee.project.service.CategoryService;
-import com.bumblebee.project.util.StandardResponse;
+import com.bumblebee.project.utility.Util2.StandardResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

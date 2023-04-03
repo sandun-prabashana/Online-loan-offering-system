@@ -22,8 +22,6 @@ public class CustomerDTO {
 
     private String phoneNumber;
 
-    private String password;
-
     private String addressLine1;
 
     private String city;

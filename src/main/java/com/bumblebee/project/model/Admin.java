@@ -17,11 +17,18 @@ public class Admin {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long adminId;
 
-    private String username;
+    @OneToOne
+    @JoinColumn(name = "USERNAME", referencedColumnName = "USERNAME")
+    private Users userName;
 
-    private String password;
+    @Column(nullable = false)
+    private String firstName;
 
-    private String role;
+    @Column(nullable = false)
+    private String lastName;
+
+    @Column(nullable = false)
+    private String phoneNumber;
 
     private String email;
 

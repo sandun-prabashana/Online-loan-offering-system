@@ -1,4 +1,4 @@
-package com.bumblebee.project.util;
+package com.bumblebee.project.utility.Util2;
 
 import lombok.*;
 

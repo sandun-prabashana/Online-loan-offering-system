@@ -1,7 +1,7 @@
 package com.bumblebee.project.advisor;
 
 import com.bumblebee.project.exception.ValidateException;
-import com.bumblebee.project.util.StandardResponse;
+import com.bumblebee.project.utility.Util2.StandardResponse;
 import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

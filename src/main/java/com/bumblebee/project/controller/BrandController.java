@@ -1,18 +1,12 @@
 package com.bumblebee.project.controller;
 
-import com.bumblebee.project.dto.AdminDTO;
 import com.bumblebee.project.dto.BrandDTO;
-import com.bumblebee.project.model.Admin;
 import com.bumblebee.project.model.Brand;
-import com.bumblebee.project.service.AdminService;
 import com.bumblebee.project.service.BrandService;
-import com.bumblebee.project.util.StandardResponse;
+import com.bumblebee.project.utility.Util2.StandardResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.FieldError;
-import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;

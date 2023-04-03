@@ -4,7 +4,7 @@ package com.bumblebee.project.controller;
 import com.bumblebee.project.dto.LoanDTO;
 import com.bumblebee.project.model.Loan;
 import com.bumblebee.project.service.LoanService;
-import com.bumblebee.project.util.StandardResponse;
+import com.bumblebee.project.utility.Util2.StandardResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

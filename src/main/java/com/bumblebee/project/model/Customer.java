@@ -26,14 +26,15 @@ public class Customer {
     @Column(nullable = false)
     private String lastName;
 
+    @OneToOne
+    @JoinColumn(name = "USERNAME", referencedColumnName = "USERNAME")
+    private Users userName;
+
     @Column(nullable = false, unique = true)
     private String email;
 
     @Column(nullable = false)
     private String phoneNumber;
-
-    @Column(nullable = false)
-    private String password;
 
     @Column(nullable = false)
     private String addressLine1;
@@ -44,7 +45,7 @@ public class Customer {
     @Column(nullable = false)
     private String postalCode;
 
-    @Column(nullable = false, columnDefinition = "VARCHAR(20) DEFAULT 'ACTIVE'")
+    @Column(columnDefinition = "VARCHAR(20) DEFAULT 'ACTIVE'")
     private String status;
 
     private boolean isEnabled;
