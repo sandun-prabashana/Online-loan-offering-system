@@ -10,48 +10,49 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @CrossOrigin("*")
 @RestController
-@RequestMapping("/api/product")
+@RequestMapping("/api/v1/product")
 public class ProductController {
 
     @Autowired
     ProductService productService;
 
     @PostMapping
-    public ResponseEntity<Product> createAdmin(@RequestBody ProductDTO productDTO) {
+    public ResponseEntity<Product> createProduct(@Valid @RequestBody ProductDTO productDTO) {
         Product product = productService.createProduct(productDTO);
         return new ResponseEntity(new StandardResponse("200", "Product Register successfully", productDTO), HttpStatus.CREATED);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Product> getAdminById(@PathVariable Long id) {
+    public ResponseEntity<Product> getProductById(@PathVariable Long id) {
         Product product = productService.getProductById(id);
         return new ResponseEntity(new StandardResponse("200", "Product retrieved successfully", product), HttpStatus.OK);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Product> updateAdmin(@PathVariable Long id, @RequestBody Product product2) {
+    public ResponseEntity<Product> updateProduct(@PathVariable Long id, @RequestBody Product product2) {
         Product product = productService.updateProduct(id, product2);
         return new ResponseEntity(new StandardResponse("200", "Product updated successfully", product), HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteAdmin(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteProduct(@PathVariable Long id) {
         productService.deleteProduct(id);
         return new ResponseEntity(new StandardResponse("200", "Product deleted successfully", id), HttpStatus.OK);
     }
 
     @GetMapping
-    public ResponseEntity<List<Product>> getAllAdmins() {
+    public ResponseEntity<List<Product>> getAllProducts() {
         List<Product> product = productService.getAllProduct();
         return new ResponseEntity(new StandardResponse("200", "Product retrieved successfully", product), HttpStatus.OK);
     }
 
     @GetMapping("/count")
-    public ResponseEntity<Long> getCustomerCount() {
+    public ResponseEntity<Long> getProductCount() {
         Number count = productService.getProductCount();
         return new ResponseEntity(new StandardResponse("200", "Product Count", count), HttpStatus.OK);
     }

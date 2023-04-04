@@ -52,4 +52,9 @@ public class PurchaseServiceImpl implements PurchaseService {
     public List<Purchase> getAllPurchase() {
         return purchaseRepository.findAll();
     }
+
+    @Override
+    public Long getPurchaseCount() {
+        return purchaseRepository.count();
+    }
 }

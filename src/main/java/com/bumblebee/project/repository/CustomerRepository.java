@@ -13,4 +13,7 @@ public interface CustomerRepository extends JpaRepository<Customer, Long> {
     Customer findByEmail(String email);
 
     Customer findByActivationCode(String activationCode);
+
+    @Query(value = "SELECT COUNT(customer_id)  FROM Customer WHERE status = :status", nativeQuery = true)
+    Integer getCustomerCountByStatus(@Param("status") String status);
 }

@@ -11,13 +11,9 @@ import java.util.Date;
 public class UserroleDTO {
 
     private String userrolecode;
-
     private String status;
-
     private String description;
-
     private Date lastupdatedtime;
-
     private Date createdtime;
 
 }

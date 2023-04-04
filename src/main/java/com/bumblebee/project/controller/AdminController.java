@@ -9,18 +9,19 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @CrossOrigin("*")
 @RestController
-@RequestMapping("/api/admin")
+@RequestMapping("/api/v1/admin")
 public class AdminController {
 
     @Autowired
     private AdminService adminService;
 
     @PostMapping
-    public ResponseEntity<Admin> createAdmin(@RequestBody AdminDTO adminDTO) {
+    public ResponseEntity<Admin> createAdmin(@Valid @RequestBody AdminDTO adminDTO) {
         Admin admin = adminService.createAdmin(adminDTO);
         return new ResponseEntity(new StandardResponse("200", "Admin Register successfully", adminDTO), HttpStatus.CREATED);
     }

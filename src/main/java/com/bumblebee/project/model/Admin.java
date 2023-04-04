@@ -19,7 +19,7 @@ public class Admin {
 
     @OneToOne
     @JoinColumn(name = "USERNAME", referencedColumnName = "USERNAME")
-    private Users userName;
+    private User userName;
 
     @Column(nullable = false)
     private String firstName;

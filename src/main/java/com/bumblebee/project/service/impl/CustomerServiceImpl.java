@@ -4,7 +4,13 @@ import com.bumblebee.project.dto.CustomerDTO;
 import com.bumblebee.project.exception.AdminNotFoundException;
 import com.bumblebee.project.exception.ValidateException;
 import com.bumblebee.project.model.Customer;
+import com.bumblebee.project.model.Loan;
+import com.bumblebee.project.model.User;
+import com.bumblebee.project.model.Userrole;
 import com.bumblebee.project.repository.CustomerRepository;
+import com.bumblebee.project.repository.LoanRepository;
+import com.bumblebee.project.repository.UserRepository;
+import com.bumblebee.project.repository.UserRoleRepository;
 import com.bumblebee.project.service.CustomerService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +20,9 @@ import org.springframework.stereotype.Service;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
+import java.math.BigDecimal;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -22,6 +30,12 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Autowired
     private CustomerRepository customerRepository;
+
+    @Autowired
+    private UserRepository userRepository;
+
+    @Autowired
+    private LoanRepository loanRepository;
 
     @Autowired
     private ModelMapper modelMapper;
@@ -36,9 +50,30 @@ public class CustomerServiceImpl implements CustomerService {
             throw new ValidateException("Customer Already Registered");
         }
         customerDTO.setActivationCode(UUID.randomUUID().toString());
+
+        User user = new User();
+        Userrole userrole = new Userrole();
+        userrole.setUserrolecode("3");
+
+        user.setUsername(customerDTO.getUser().getUsername());
+        user.setPassword(customerDTO.getPassword());
+        user.setStatus("ACTIVE");
+        user.setUserrole(userrole);
+        userRepository.save(user);
+
         Customer customer = modelMapper.map(customerDTO, Customer.class);
         customerRepository.save(customer);
+        System.out.println("id :"+customer.getCustomerId());
         sendActivationEmail(customerDTO);
+
+        Loan loan = new Loan();
+        loan.setCustomer(customer);
+        loan.setInstallmentPlan("3");
+        loan.setLoanAmount(BigDecimal.valueOf(15000));
+        loan.setLoanBalance(BigDecimal.valueOf(15000));
+        loan.setStatus("ACTIVE");
+
+        loanRepository.save(loan);
     }
 
     @Override
@@ -107,5 +142,15 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public Long getCustomerCount() {
         return customerRepository.count();
+    }
+
+    @Override
+    public Integer getCustomerCountByACT() {
+        return customerRepository.getCustomerCountByStatus("ACTIVE");
+    }
+
+    @Override
+    public Integer getCustomerCountByDEACT() {
+        return customerRepository.getCustomerCountByStatus("DEACTIVE");
     }
 }

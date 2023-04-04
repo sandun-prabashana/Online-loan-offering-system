@@ -11,17 +11,18 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.mail.MessagingException;
+import javax.validation.Valid;
 import java.util.List;
 
 @CrossOrigin("*")
 @RestController
-@RequestMapping("/api/loan")
+@RequestMapping("/api/v1/loan")
 public class loanController {
     @Autowired
     private LoanService loanService;
 
     @PostMapping
-    public ResponseEntity<Loan> createAdmin(@RequestBody LoanDTO loanDTO) throws MessagingException {
+    public ResponseEntity<Loan> createAdmin(@Valid @RequestBody LoanDTO loanDTO) throws MessagingException {
         Loan loan = loanService.createLoan(loanDTO);
         return new ResponseEntity(new StandardResponse("200", "Loan Register successfully", loan), HttpStatus.CREATED);
     }

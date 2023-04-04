@@ -1,7 +1,7 @@
 package com.bumblebee.project.service.impl;
 
 import com.bumblebee.project.dto.LoginDTO;
-import com.bumblebee.project.model.Users;
+import com.bumblebee.project.model.User;
 import com.bumblebee.project.repository.UserRepository;
 import com.bumblebee.project.service.LoginService;
 import com.bumblebee.project.utility.Util2.StandardResponse;
@@ -36,8 +36,8 @@ public class LoginServiceImpl implements LoginService {
                 )
         );
 
-        Optional<Users> byUsername = userRepository.findByUsername(loginDTO.getUsername());
-        Users user;
+        Optional<User> byUsername = userRepository.findByUsername(loginDTO.getUsername());
+        User user;
         String token;
         if (byUsername.isPresent()) {
             user = byUsername.get();

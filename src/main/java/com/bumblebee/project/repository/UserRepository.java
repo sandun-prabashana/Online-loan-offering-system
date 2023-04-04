@@ -1,11 +1,13 @@
 package com.bumblebee.project.repository;
 
 
-import com.bumblebee.project.model.Users;
+import com.bumblebee.project.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
 
-public interface UserRepository extends JpaRepository<Users, String> {
-    Optional<Users> findByUsername(String userName);
+public interface UserRepository extends JpaRepository<User, String> {
+    Optional<User> findByUsername(String userName);
+
+
 }

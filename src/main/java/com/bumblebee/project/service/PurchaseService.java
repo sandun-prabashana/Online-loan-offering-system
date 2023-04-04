@@ -13,4 +13,6 @@ public interface PurchaseService {
     Purchase updatePurchase(Long productId, Purchase purchase);
     void deletePurchase(Long productId);
     List<Purchase> getAllPurchase();
+
+    Long getPurchaseCount();
 }

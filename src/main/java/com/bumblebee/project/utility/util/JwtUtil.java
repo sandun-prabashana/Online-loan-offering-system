@@ -4,7 +4,7 @@ import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 
 import com.bumblebee.project.dto.PayLoadDTO;
-import com.bumblebee.project.model.Users;
+import com.bumblebee.project.model.User;
 import com.bumblebee.project.utility.constant.Constant;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -45,7 +45,7 @@ public class JwtUtil {
         return false;
     }
 
-    public String generateToken(Users user) {
+    public String generateToken(User user) {
         String sessionId = RequestContextHolder.currentRequestAttributes().getSessionId();
         PayLoadDTO payLoadBean = new PayLoadDTO(sessionId, user.getUsername());
         // creating the jwt token

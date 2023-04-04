@@ -21,36 +21,40 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "user")
-public class Users implements java.io.Serializable, UserDetails {
+public class User implements java.io.Serializable, UserDetails {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @Column(name = "USERNAME", unique = true, nullable = false, length = 50)
+    @Column(unique = true, nullable = false, length = 50)
     private String username;
 
-    @Column(name = "STATUS", length = 100)
+    @Column(length = 100)
     private String status;
 
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "USERROLE", referencedColumnName = "USERROLECODE")
-    @JsonIgnore
-    private com.bumblebee.project.model.Userrole userrole;
+    @OneToOne
+    @JoinColumn(name = "userrolecode")
+//    @JsonIgnore
+    private Userrole userrole;
 
-    @Column(name = "PASSWORD", length = 100)
-    @JsonIgnore
+    @Column( length = 100)
     private String password;
 
+    @OneToOne
+    @JoinColumn(name = "customerId")
+    @JsonIgnore
+    private Customer customer;
+
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "LASTUPDATEDTIME", nullable = false, length = 19)
+    @Column( nullable = false, length = 19)
     @UpdateTimestamp
     private Date lastupdatedtime;
 
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "CREATEDTIME", nullable = false, length = 19, updatable = false)
+    @Column( nullable = false, length = 19, updatable = false)
     @CreationTimestamp
     private Date createdtime;
 
-    public Users(String username, String status, com.bumblebee.project.model.Userrole userrole, String password, String fullname) {
+    public User(String username, String status, com.bumblebee.project.model.Userrole userrole, String password, String fullname) {
         this.username = username;
         this.status = status;
         this.userrole = userrole;

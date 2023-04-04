@@ -11,18 +11,20 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.mail.MessagingException;
+import javax.validation.Valid;
 import java.util.List;
 
 @CrossOrigin("*")
 @RestController
-@RequestMapping("/api/customer")
+@RequestMapping("/api/v1/customer")
 public class CustomerController {
 
     @Autowired
     private CustomerService customerService;
 
     @PostMapping
-    public ResponseEntity<Customer> createAdmin(@RequestBody CustomerDTO customerDTO) throws MessagingException {
+    public ResponseEntity<Customer> createCustomer(@Valid @RequestBody CustomerDTO customerDTO) throws MessagingException {
+        System.out.println("ok");
         customerService.createCustomer(customerDTO);
         return new ResponseEntity(new StandardResponse("200", "Customer Register successfully", customerDTO), HttpStatus.CREATED);
     }
@@ -62,6 +64,16 @@ public class CustomerController {
         Number count = customerService.getCustomerCount();
         System.out.println(count);
         return new ResponseEntity(new StandardResponse("200", "Customer Count", count), HttpStatus.OK);
+    }
+
+    @GetMapping("ACTIVE/countByStatus")
+    public Integer getCustomerCountACT() {
+        return customerService.getCustomerCountByACT();
+    }
+
+    @GetMapping("DEACTIVE/countByStatus")
+    public Integer getCustomerCountDEACT() {
+        return customerService.getCustomerCountByDEACT();
     }
 
 }

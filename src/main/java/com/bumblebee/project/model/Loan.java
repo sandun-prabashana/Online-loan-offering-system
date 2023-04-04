@@ -28,4 +28,6 @@ public class Loan {
 
     private String installmentPlan;
 
+    private String status;
+
 }

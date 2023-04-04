@@ -18,4 +18,7 @@ public interface CustomerService {
 
     Long getCustomerCount();
 
+    Integer getCustomerCountByACT();
+    Integer getCustomerCountByDEACT();
+
 }

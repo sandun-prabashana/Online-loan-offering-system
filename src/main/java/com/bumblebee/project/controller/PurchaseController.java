@@ -11,18 +11,19 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.mail.MessagingException;
+import javax.validation.Valid;
 import java.util.List;
 
 @CrossOrigin("*")
 @RestController
-@RequestMapping("/api/purchase")
+@RequestMapping("/api/v1/purchase")
 public class PurchaseController {
 
     @Autowired
     private PurchaseService purchaseService;
 
     @PostMapping
-    public ResponseEntity<Purchase> createAdmin(@RequestBody PurchaseDTO purchaseDTO) throws MessagingException {
+    public ResponseEntity<Purchase> createAdmin(@Valid @RequestBody PurchaseDTO purchaseDTO) throws MessagingException {
         Purchase purchase = purchaseService.createPurchase(purchaseDTO);
         return new ResponseEntity(new StandardResponse("200", "Purchase Register successfully", purchase), HttpStatus.CREATED);
     }
@@ -49,6 +50,12 @@ public class PurchaseController {
     public ResponseEntity<List<Purchase>> getAllAdmins() {
         List<Purchase> purchase = purchaseService.getAllPurchase();
         return new ResponseEntity(new StandardResponse("200", "Purchase retrieved successfully", purchase), HttpStatus.OK);
+    }
+
+    @GetMapping("/count")
+    public ResponseEntity<Long> getPurchaseCount() {
+        Number count = purchaseService.getPurchaseCount();
+        return new ResponseEntity(new StandardResponse("200", "Product Count", count), HttpStatus.OK);
     }
 
 }
