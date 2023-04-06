@@ -32,11 +32,11 @@ public class AdminController {
         return new ResponseEntity(new StandardResponse("200", "Admin retrieved successfully", admin), HttpStatus.OK);
     }
 
-//    @PutMapping("/{id}")
-//    public ResponseEntity<Admin> updateAdmin(@PathVariable Long id, @RequestBody AdminDTO adminDTO) {
-//        Admin admin = adminService.updateAdmin(id, adminDTO);
-//        return new ResponseEntity(new StandardResponse("200", "Admin updated successfully", admin), HttpStatus.OK);
-//    }
+    @PutMapping("/{id}")
+    public ResponseEntity<Admin> updateAdmin(@PathVariable Long id, @RequestBody AdminDTO adminDTO) {
+        Admin admin = adminService.updateAdmin(id, adminDTO);
+        return new ResponseEntity(new StandardResponse("200", "Admin updated successfully", admin), HttpStatus.OK);
+    }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteAdmin(@PathVariable Long id) {

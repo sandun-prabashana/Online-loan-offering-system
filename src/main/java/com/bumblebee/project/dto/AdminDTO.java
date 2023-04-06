@@ -13,7 +13,7 @@ public class AdminDTO {
 
     private Long adminId;
 
-    @NotBlank(message = "User Name cannot be blank")
+//    @NotBlank(message = "User Name cannot be blank")
     private UserDTO userName;
 
     @NotBlank(message = "First Name cannot be blank")

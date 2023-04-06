@@ -40,7 +40,7 @@ import java.util.Map;
 @EnableMethodSecurity
 public class WebSecurityConfiguration {
     public static final Logger logger = LoggerFactory.getLogger(WebSecurityConfiguration.class);
-    private static final String[] AUTH_WHITELIST = {"/api/v1/login","/api/v1/customer/activate/{activationCode}","/api/v1/purchase"};
+    private static final String[] AUTH_WHITELIST = {"/api/v1/login","/api/v1/customer/activate/{activationCode}","/api/v1/admin/{id}","/api/v1/customer"};
     @Autowired
     private ObjectMapper objectMapper;
     @Autowired

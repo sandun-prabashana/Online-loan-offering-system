@@ -20,7 +20,6 @@ public class CustomerDTO {
     @NotBlank(message = "Last Name cannot be blank")
     private String lastName;
 
-    @NotBlank(message = "User Name cannot be blank")
     private UserDTO user;
 
     @NotBlank(message = "Email cannot be blank")

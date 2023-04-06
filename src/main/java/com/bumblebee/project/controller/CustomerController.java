@@ -7,6 +7,7 @@ import com.bumblebee.project.service.CustomerService;
 import com.bumblebee.project.utility.Util2.StandardResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -53,11 +54,28 @@ public class CustomerController {
         return new ResponseEntity(new StandardResponse("200", "Customer retrieved successfully", customer), HttpStatus.OK);
     }
 
-    @GetMapping("/activate/{activationCode}")
-    public String activate(@PathVariable String activationCode) {
+
+    @GetMapping(value = "/activate/{activationCode}", produces = MediaType.TEXT_HTML_VALUE)
+    public ResponseEntity<String> activate(@PathVariable String activationCode) {
         customerService.activate(activationCode);
-        return "activation_successful";
+        String successMessage = "<!DOCTYPE html>" +
+                "<html>" +
+                "<head>" +
+                "<style>" +
+                "body { font-family: Arial, sans-serif; text-align: center; }" +
+                "h1 { color: #4CAF50; }" +
+                "p { font-size: 18px; }" +
+                "</style>" +
+                "</head>" +
+                "<body>" +
+                "<h1>Activation Successful!</h1>" +
+                "<p>Your account has been activated. You can now login and start using our services.</p>" +
+                "</body>" +
+                "</html>";
+
+        return new ResponseEntity<>(successMessage, HttpStatus.OK);
     }
+
 
     @GetMapping("/count")
     public ResponseEntity<Long> getCustomerCount() {

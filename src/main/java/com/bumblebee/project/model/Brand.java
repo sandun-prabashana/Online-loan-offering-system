@@ -7,10 +7,10 @@ import org.hibernate.annotations.UpdateTimestamp;
 import javax.persistence.*;
 import java.util.Date;
 
-@Getter
-@Setter
+
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 @Data
 @Entity
 @Table(name = "brand")
@@ -23,15 +23,5 @@ public class Brand {
     private String brandName;
 
     private String status;
-
-//    @Temporal(TemporalType.TIMESTAMP)
-//    @Column( nullable = false, length = 19)
-//    @UpdateTimestamp
-//    private Date lastupdatedtime;
-//
-//    @Temporal(TemporalType.TIMESTAMP)
-//    @Column(nullable = false, length = 19, updatable = false)
-//    @CreationTimestamp
-//    private Date createdtime;
 
 }

@@ -45,10 +45,17 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public void createCustomer(CustomerDTO customerDTO) throws MessagingException {
-        System.out.println(customerRepository.existsByEmail(customerDTO.getEmail()));
+
+        if (userRepository.existsByUserName(customerDTO.getUser().getUsername()) == 1){
+            throw new ValidateException("User Name Already Taken");
+        }
+
         if (customerRepository.existsByEmail(customerDTO.getEmail()) == 1){
             throw new ValidateException("Customer Already Registered");
         }
+
+
+
         customerDTO.setActivationCode(UUID.randomUUID().toString());
 
         User user = new User();
@@ -127,9 +134,9 @@ public class CustomerServiceImpl implements CustomerService {
                 "<p>Dear " + customerDTO.getFirstName() +" "+ customerDTO.getLastName() + ",</p>" +
                 "<p>Thank you for registering on MyStore! We're excited to have you as a customer.</p>" +
                 "<p>To get started, you'll need to activate your account. Please click the button below to activate your account and start shopping!</p>" +
-                "<a href='http://localhost:8080/api/customer/activate/" + customerDTO.getActivationCode() + "' style='padding: 10px 20px; background-color: #0066cc; color: #fff; text-decoration: none; border-radius: 5px;'>Activate My Account</a>" +
+                "<a href='http://localhost:8080/BB/api/v1/customer/activate/" + customerDTO.getActivationCode() + "' style='padding: 10px 20px; background-color: #0066cc; color: #fff; text-decoration: none; border-radius: 5px;'>Activate My Account</a>" +
                 "<p>If the button above doesn't work, please copy and paste the following link into your browser:</p>" +
-                "<p>http://localhost:8080/api/customer/activate/" + customerDTO.getActivationCode() + "</p>" +
+                "<p>http://localhost:8080/BB/api/v1/customer/activate/" + customerDTO.getActivationCode() + "</p>" +
                 "<p>If you have any questions or need assistance, please don't hesitate to contact us at <a href='mailto:support@mystore.com'>support@mystore.com</a>.</p>" +
                 "<p>Thank you for choosing MyStore!</p>" +
                 "<p>Best regards,</p>" +

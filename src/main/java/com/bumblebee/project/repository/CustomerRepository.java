@@ -10,6 +10,8 @@ public interface CustomerRepository extends JpaRepository<Customer, Long> {
     @Query(value = "SELECT COUNT(email)  FROM Customer WHERE email = :email", nativeQuery = true)
     Integer existsByEmail(@Param("email") String email);
 
+
+
     Customer findByEmail(String email);
 
     Customer findByActivationCode(String activationCode);

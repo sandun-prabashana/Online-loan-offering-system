@@ -12,15 +12,12 @@ import java.util.Date;
 @Data
 public class UserDTO {
 
-    @NotBlank(message = "User Name cannot be blank")
     private String username;
 
     private String status;
 
-    @NotBlank(message = "User Role cannot be blank")
     private UserroleDTO userrole;
 
-    @NotBlank(message = "Password cannot be blank")
     private String password;
 
     private Date lastupdatedtime;
