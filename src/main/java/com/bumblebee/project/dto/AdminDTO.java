@@ -4,61 +4,29 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-//@NoArgsConstructor
-//@AllArgsConstructor
-//@Data
+import javax.validation.constraints.NotBlank;
+
+@NoArgsConstructor
+@AllArgsConstructor
+@Data
 public class AdminDTO {
 
     private Long adminId;
 
-    private String username;
+//    @NotBlank(message = "User Name cannot be blank")
+    private UserDTO userName;
 
-    private String password;
+    @NotBlank(message = "First Name cannot be blank")
+    private String firstName;
 
-    private String role;
+    @NotBlank(message = "Last Name cannot be blank")
+    private String lastName;
 
+    @NotBlank(message = "Phone Number cannot be blank")
+    private String phoneNumber;
+
+    @NotBlank(message = "Email cannot be blank")
     private String email;
 
-    public AdminDTO() {
-    }
 
-    public Long getAdminId() {
-        return adminId;
-    }
-
-    public void setAdminId(Long adminId) {
-        this.adminId = adminId;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getRole() {
-        return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
 }

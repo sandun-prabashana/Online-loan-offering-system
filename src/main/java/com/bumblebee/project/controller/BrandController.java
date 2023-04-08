@@ -1,29 +1,28 @@
 package com.bumblebee.project.controller;
 
-import com.bumblebee.project.dto.AdminDTO;
 import com.bumblebee.project.dto.BrandDTO;
-import com.bumblebee.project.model.Admin;
 import com.bumblebee.project.model.Brand;
-import com.bumblebee.project.service.AdminService;
 import com.bumblebee.project.service.BrandService;
-import com.bumblebee.project.util.StandardResponse;
+import com.bumblebee.project.utility.Util2.StandardResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @CrossOrigin("*")
 @RestController
-@RequestMapping("/api/brand")
+@RequestMapping("/api/v1/brand")
 public class BrandController {
 
     @Autowired
     private BrandService brandService;
 
+
     @PostMapping
-    public ResponseEntity<Brand> createBrand(@RequestBody BrandDTO brandDTO) {
+    public ResponseEntity<Brand> createBrand(@Valid @RequestBody BrandDTO brandDTO) {
         System.out.println("brandDTO 1 :"+brandDTO.getBrandName());
         Brand brand = brandService.createBrand(brandDTO);
         return new ResponseEntity(new StandardResponse("200", "Brand Create successfully", brandDTO), HttpStatus.CREATED);
@@ -51,5 +50,11 @@ public class BrandController {
     public ResponseEntity<List<Brand>> getAllBrand() {
         List<Brand> brand = brandService.getAllBrand();
         return new ResponseEntity(new StandardResponse("200", "Brand retrieved successfully", brand), HttpStatus.OK);
+    }
+
+    @GetMapping("/count")
+    public ResponseEntity<Long> getCustomerCount() {
+        Number count = brandService.getBrandCount();
+        return new ResponseEntity(new StandardResponse("200", "Brand Count", count), HttpStatus.OK);
     }
 }

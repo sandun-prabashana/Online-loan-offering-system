@@ -1,6 +1,7 @@
 package com.bumblebee.project.model;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -10,6 +11,7 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
+@Builder
 @Entity
 @Table(name = "loan")
 public class Loan {
@@ -27,5 +29,7 @@ public class Loan {
     private BigDecimal loanBalance;
 
     private String installmentPlan;
+
+    private String status;
 
 }

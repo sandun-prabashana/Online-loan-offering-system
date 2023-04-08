@@ -4,24 +4,25 @@ package com.bumblebee.project.controller;
 import com.bumblebee.project.dto.CategoryDTO;
 import com.bumblebee.project.model.Category;
 import com.bumblebee.project.service.CategoryService;
-import com.bumblebee.project.util.StandardResponse;
+import com.bumblebee.project.utility.Util2.StandardResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @CrossOrigin("*")
 @RestController
-@RequestMapping("/api/category")
+@RequestMapping("/api/v1/category")
 public class CategoryController {
 
     @Autowired
     private CategoryService categoryService;
 
     @PostMapping
-    public ResponseEntity<Category> createBrand(@RequestBody CategoryDTO categoryDTO) {
+    public ResponseEntity<Category> createCategory(@Valid @RequestBody CategoryDTO categoryDTO) {
         Category category = categoryService.createCategory(categoryDTO);
         return new ResponseEntity(new StandardResponse("200", "Category Create successfully", categoryDTO), HttpStatus.CREATED);
     }
@@ -32,9 +33,9 @@ public class CategoryController {
         return new ResponseEntity(new StandardResponse("200", "Category retrieved successfully", category), HttpStatus.OK);
     }
 
-    @PutMapping("/{brand_id}")
-    public ResponseEntity<Category> updateBrand(@PathVariable Long brand_id, @RequestBody CategoryDTO categoryDTO) {
-        Category category = categoryService.updateCategory(brand_id, categoryDTO);
+    @PutMapping("/{category_id}")
+    public ResponseEntity<Category> updateBrand(@PathVariable Long category_id, @RequestBody CategoryDTO categoryDTO) {
+        Category category = categoryService.updateCategory(category_id, categoryDTO);
         return new ResponseEntity(new StandardResponse("200", "Category updated successfully", category), HttpStatus.OK);
     }
 
@@ -45,8 +46,14 @@ public class CategoryController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Category>> getAllBrand() {
+    public ResponseEntity<List<Category>> getAllCategory() {
         List<Category> category = categoryService.getAllCategory();
         return new ResponseEntity(new StandardResponse("200", "Category retrieved successfully", category), HttpStatus.OK);
+    }
+
+    @GetMapping("/count")
+    public ResponseEntity<Long> getCustomerCount() {
+        Number count = categoryService.getCategoryCount();
+        return new ResponseEntity(new StandardResponse("200", "Category Count", count), HttpStatus.OK);
     }
 }

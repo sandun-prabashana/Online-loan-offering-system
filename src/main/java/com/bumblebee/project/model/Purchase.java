@@ -3,9 +3,11 @@ package com.bumblebee.project.model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.Date;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -28,7 +30,10 @@ public class Purchase {
 
     private int purchaseQuantity;
 
-    private LocalDate purchaseDate;
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column( nullable = false, length = 19, updatable = false)
+    @CreationTimestamp
+    private Date purchaseDate;
 
 }
 
